@@ -1,0 +1,38 @@
+###########################################################
+# EL POOL:
+# Imagina un servicio de alquiler de bicicletas:
+#
+#   Sin pool: Cada usuario compra una bici nueva y la tira después de usarla (caro e ineficiente).
+#
+#   Con pool: Hay 5 bicis disponibles. Los usuarios las toman prestadas, las usan, y las devuelven para que otros las usen.
+###########################################################
+
+spring:
+  application:
+    name: report-ms
+  profiles:
+    default: default
+    # el perfil que queremos que escoja del confign server
+  config:
+    import: "optional:configserver:http://localhost:7777"
+    # la config se trae del puerto 7777, es decir el config server
+
+
+server:
+  port: 7070
+  servlet:
+    context-path: /report-ms
+
+
+###########################################################
+# Estas líneas ayudan al desarrollador a ver cómo se comporta
+# la base de datos durante el desarrollo.
+# No las uses en producción.
+###########################################################
+
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
