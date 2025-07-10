@@ -2,26 +2,22 @@ package com.primerMicroSer.report_ms.models;
 
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class WebSite implements Serializable {
 
 
-    private Long id;
     private String name;
     //va a ser la columna llamada category
-
-    private Category category;
-    private String description;
 }
-//Controla cómo JPA (Java Persistence API) mapea un enum Java a la base de datos.
-//ejemplo:
-//    Valor Java	        Almacenado en DB como
-//    Category.TECHNOLOGY	"TECHNOLOGY"
-//    Category.HEALTHCARE	"HEALTHCARE"
-//    Category.EDUCATION	"EDUCATION"
